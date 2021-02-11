@@ -8,12 +8,12 @@ RUN setup.sh && \
     save-pharo.sh metacello install ${REPOS_URL} BaselineOfSCypherGraph && \
     cp -r /root/data ${SCYPHERGRAPH_DIR}
 
-RUN wget https://github.com/mumez/SmallBolt/releases/download/stable/libseabolt17.so && \
-    chmod a+x libseabolt17.so && \
-    cp libseabolt17.so ${SCYPHERGRAPH_DIR}
+RUN cp /root/build/libseabolt17.so ${SCYPHERGRAPH_DIR}
 
+# Or you can download libseabolt17.so from the official seabolt repository
 # RUN wget https://github.com/neo4j-drivers/seabolt/releases/download/v1.7.4/seabolt-1.7.4-Linux-ubuntu-16.04.tar.gz  && \
-#    tar xvfz seabolt-1.7.4-Linux-ubuntu-16.04.tar.gz --strip-components=1 -C /
+#    tar xvfz seabolt-1.7.4-Linux-ubuntu-16.04.tar.gz --strip-components=1 -C / && \
+#    ln -s /usr/local/lib/libseabolt17.so ${SCYPHERGRAPH_DIR}/libseabolt17.so
 
 ENV PHARO_HOME=${SCYPHERGRAPH_DIR}
 VOLUME [ "${SCYPHERGRAPH_DIR}","/root/tmp" ]
